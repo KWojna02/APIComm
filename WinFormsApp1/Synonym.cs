@@ -9,11 +9,11 @@ namespace WinFormsApp1
     internal class Synonym
     {
         public int Id { get; set; }
-        public required string Word { get; set; }
-        public required int Score { get; set; }
+        public required string word { get; set; }
+        public required int score { get; set; }
         public override string ToString()
         {
-            return $"Word: {Word},\tScore: {Score}";
+            return $"Word: {word},\tScore: {score}";
         }
     }
 }

@@ -22,8 +22,8 @@ namespace WinFormsApp1
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Synonym>().HasData(
-                new Synonym() { Id = 1, Word = "Szybki", Score = 350 },
-                new Synonym() { Id = 2, Word = "Przebiegly", Score = 100});
+                new Synonym() { Id = 1, word = "Szybki", score = 350 },
+                new Synonym() { Id = 2, word = "Przebiegly", score = 100});
         }
     }
 }
