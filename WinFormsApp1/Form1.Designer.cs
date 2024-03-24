@@ -74,7 +74,7 @@
             buttonDownload.TabIndex = 0;
             buttonDownload.Text = "download";
             buttonDownload.UseVisualStyleBackColor = true;
-            buttonDownload.Click += buttonDownload_Click;
+            buttonDownload.Click += ButtonDownload_Click;
             // 
             // listBox1
             // 
@@ -83,7 +83,7 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(489, 204);
             listBox1.TabIndex = 1;
-            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
+            listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
             // 
             // textBox1
             // 
@@ -91,7 +91,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 2;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.TextChanged += TextBox1_TextChanged;
             // 
             // label1
             // 
@@ -101,7 +101,7 @@
             label1.Size = new Size(106, 20);
             label1.TabIndex = 3;
             label1.Text = "Enter the word";
-            label1.Click += label1_Click;
+            label1.Click += Label1_Click;
             // 
             // textBoxWord
             // 
@@ -109,7 +109,7 @@
             textBoxWord.Name = "textBoxWord";
             textBoxWord.Size = new Size(94, 27);
             textBoxWord.TabIndex = 5;
-            textBoxWord.TextChanged += textBoxWord_TextChanged;
+            textBoxWord.TextChanged += TextBoxWord_TextChanged;
             // 
             // textBoxScore
             // 
@@ -117,7 +117,7 @@
             textBoxScore.Name = "textBoxScore";
             textBoxScore.Size = new Size(94, 27);
             textBoxScore.TabIndex = 6;
-            textBoxScore.TextChanged += textBoxScore_TextChanged;
+            textBoxScore.TextChanged += TextBoxScore_TextChanged;
             // 
             // buttonAdd
             // 
@@ -128,7 +128,7 @@
             buttonAdd.TabIndex = 4;
             buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += buttonAdd_Click;
+            buttonAdd.Click += ButtonAdd_Click;
             // 
             // tabControl1
             // 
@@ -154,7 +154,7 @@
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Download synonyms";
             tabPage1.UseVisualStyleBackColor = true;
-            tabPage1.Click += tabPage1_Click;
+            tabPage1.Click += TabPage1_Click;
             // 
             // tabPage2
             // 
@@ -213,7 +213,7 @@
             buttonSort.TabIndex = 4;
             buttonSort.Text = "Sort";
             buttonSort.UseVisualStyleBackColor = true;
-            buttonSort.Click += buttonSort_Click;
+            buttonSort.Click += ButtonSort_Click;
             // 
             // radioButton4
             // 
@@ -236,7 +236,7 @@
             radioButton3.TabStop = true;
             radioButton3.Text = "Score: lowest to highest";
             radioButton3.UseVisualStyleBackColor = true;
-            radioButton3.CheckedChanged += radioButton3_CheckedChanged;
+            radioButton3.CheckedChanged += RadioButton3_CheckedChanged;
             // 
             // radioButton2
             // 
@@ -285,7 +285,7 @@
             textBoxStartsWith.Name = "textBoxStartsWith";
             textBoxStartsWith.Size = new Size(25, 27);
             textBoxStartsWith.TabIndex = 6;
-            textBoxStartsWith.TextChanged += textBoxStartsWith_TextChanged;
+            textBoxStartsWith.TextChanged += TextBoxStartsWith_TextChanged;
             // 
             // checkBoxStartsWith
             // 
@@ -296,7 +296,7 @@
             checkBoxStartsWith.TabIndex = 5;
             checkBoxStartsWith.Text = "Word - starting with letter:";
             checkBoxStartsWith.UseVisualStyleBackColor = true;
-            checkBoxStartsWith.CheckedChanged += checkBoxStartsWith_CheckedChanged;
+            checkBoxStartsWith.CheckedChanged += CheckBoxStartsWith_CheckedChanged;
             // 
             // textBoxLowerThan
             // 
@@ -304,7 +304,7 @@
             textBoxLowerThan.Name = "textBoxLowerThan";
             textBoxLowerThan.Size = new Size(53, 27);
             textBoxLowerThan.TabIndex = 4;
-            textBoxLowerThan.TextChanged += textBoxLowerThan_TextChanged;
+            textBoxLowerThan.TextChanged += TextBoxLowerThan_TextChanged;
             // 
             // checkBoxLowerThan
             // 
@@ -315,7 +315,7 @@
             checkBoxLowerThan.TabIndex = 3;
             checkBoxLowerThan.Text = "Score - lower than:";
             checkBoxLowerThan.UseVisualStyleBackColor = true;
-            checkBoxLowerThan.CheckedChanged += checkBoxLowerThan_CheckedChanged;
+            checkBoxLowerThan.CheckedChanged += CheckBoxLowerThan_CheckedChanged;
             // 
             // buttonFilter
             // 
@@ -325,7 +325,7 @@
             buttonFilter.TabIndex = 2;
             buttonFilter.Text = "Filter";
             buttonFilter.UseVisualStyleBackColor = true;
-            buttonFilter.Click += buttonFilter_Click;
+            buttonFilter.Click += ButtonFilter_Click;
             // 
             // textBoxHigherThan
             // 
@@ -333,7 +333,7 @@
             textBoxHigherThan.Name = "textBoxHigherThan";
             textBoxHigherThan.Size = new Size(53, 27);
             textBoxHigherThan.TabIndex = 1;
-            textBoxHigherThan.TextChanged += textBoxHigherThan_TextChanged;
+            textBoxHigherThan.TextChanged += TextBoxHigherThan_TextChanged;
             // 
             // checkBoxHigherThan
             // 
@@ -344,7 +344,7 @@
             checkBoxHigherThan.TabIndex = 0;
             checkBoxHigherThan.Text = "Score - higher than:";
             checkBoxHigherThan.UseVisualStyleBackColor = true;
-            checkBoxHigherThan.CheckedChanged += checkBoxHigherThan_CheckedChanged;
+            checkBoxHigherThan.CheckedChanged += CheckBoxHigherThan_CheckedChanged;
             // 
             // buttonDelete
             // 
@@ -356,7 +356,7 @@
             buttonDelete.TabIndex = 10;
             buttonDelete.Text = "Delete";
             buttonDelete.UseVisualStyleBackColor = false;
-            buttonDelete.Click += buttonDelete_Click;
+            buttonDelete.Click += ButtonDelete_Click;
             // 
             // buttonClear
             // 
@@ -368,7 +368,7 @@
             buttonClear.TabIndex = 11;
             buttonClear.Text = "Clear";
             buttonClear.UseVisualStyleBackColor = false;
-            buttonClear.Click += buttonClear_Click;
+            buttonClear.Click += ButtonClear_Click;
             // 
             // label4
             // 
@@ -377,7 +377,7 @@
             labelStats.Name = "labelStats";
             labelStats.Size = new Size(50, 20);
             labelStats.TabIndex = 7;
-            labelStats.Text = $"Number of filtered synonyms: {}";
+            labelStats.Text = $"Number of filtered synonyms:";
             // 
             // Form1
             // 

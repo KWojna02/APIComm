@@ -21,16 +21,25 @@ namespace WinFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
-            if (Dict.Synonyms.ToList<Synonym>().Count() == 0) { buttonClear.Enabled = false; buttonDelete.Enabled = false; }
+            if (Dict.Synonyms.ToList<Synonym>().Count == 0) { buttonClear.Enabled = false; buttonDelete.Enabled = false; }
             labelStats.Visible = false;
         }
 
-        private async void buttonDownload_Click(object sender, EventArgs e)
+        private static bool IsAllLetters(string input)
+        {
+            foreach(char c in input)
+            {
+                if(!char.IsLetter(c)) return false;
+            }
+            return true;
+        }
+
+        private async void ButtonDownload_Click(object sender, EventArgs e)
         {
             buttonDownload.Enabled = false;
 
             string newWord = textBox1.Text.ToLower().Trim();
-            if (Regex.IsMatch(newWord, @"^[a-zA-ZπÊÍ≥ÒÛúüø•∆ £—”åèØ]+$"))
+            if (IsAllLetters(newWord))
 
             {
                 Dict.Synonyms.RemoveRange(Dict.Synonyms);
@@ -44,11 +53,11 @@ namespace WinFormsApp1
                     Dict.SaveChanges();
                     listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
                 }
-                buttonAdd.Visible = true;
+                
             }
             else
             {
-                MessageBox.Show($"Dozwolone sπ tylko S£OWA (bez cyfr) w jÍzyku angielskim.");
+                MessageBox.Show($"Only WORDS (no digits) are accepted.");
                 buttonDownload.Enabled = true;
                 return;
             }
@@ -58,22 +67,22 @@ namespace WinFormsApp1
             buttonDelete.Enabled = true;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private void ButtonAdd_Click(object sender, EventArgs e)
         {
             string newWord = textBoxWord.Text.ToLower().Trim();
             int newScore = 0;
@@ -84,12 +93,12 @@ namespace WinFormsApp1
             }
             if (exists)
             {
-                MessageBox.Show($"Slowo {newWord} juz istnieje w bazie danych.");
+                MessageBox.Show($"The word {newWord} already exists in database.");
                 return;
             }
             else if (!int.TryParse(textBoxScore.Text.Trim(), out newScore) || int.Parse(textBoxScore.Text) < 0)
             {
-                MessageBox.Show("Zle wprowadzony wynik");
+                MessageBox.Show("Fill the gaps properly.");
                 return;
             }
 
@@ -99,16 +108,16 @@ namespace WinFormsApp1
             listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
 
             buttonClear.Enabled = true;
-            buttonDelete.Visible = true;
+            buttonDelete.Enabled = true;
 
         }
 
-        private void textBoxWord_TextChanged(object sender, EventArgs e)
+        private void TextBoxWord_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void textBoxScore_TextChanged(object sender, EventArgs e)
+        private void TextBoxScore_TextChanged(object sender, EventArgs e)
         {
 
             string score = textBoxScore.Text.Trim();
@@ -119,27 +128,27 @@ namespace WinFormsApp1
             else textBoxScore.BackColor = Color.Green;
         }
 
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void TabPage1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void tabPage2_Click(object sender, EventArgs e)
+        private void TabPage2_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void tabPage1_Click_1(object sender, EventArgs e)
+        private void TabPage1_Click_1(object sender, EventArgs e)
         {
 
         }
 
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton3_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonSort_Click(object sender, EventArgs e)
+        private void ButtonSort_Click(object sender, EventArgs e)
         {
             if (!radioButton1.Checked
                 && !radioButton2.Checked
@@ -164,7 +173,7 @@ namespace WinFormsApp1
 
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private void ButtonDelete_Click(object sender, EventArgs e)
         {
 
             Synonym synonym = listBox1.SelectedItem as Synonym;
@@ -172,11 +181,11 @@ namespace WinFormsApp1
             Dict.SaveChanges();
             MessageBox.Show($"Word {synonym.word} with score {synonym.score} has been deleted.");
             listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
-            if (Dict.Synonyms.ToList<Synonym>().Count == 0) { buttonDelete.Visible = false; buttonClear.Enabled = false; }
+            if (Dict.Synonyms.ToList<Synonym>().Count == 0) { buttonDelete.Enabled = false; buttonClear.Enabled = false; }
 
         }
 
-        private void buttonClear_Click(object sender, EventArgs e)
+        private void ButtonClear_Click(object sender, EventArgs e)
         {
             Dict.Synonyms.RemoveRange(Dict.Synonyms);
             Dict.SaveChanges();
@@ -185,17 +194,20 @@ namespace WinFormsApp1
 
         }
 
-        private void buttonFilter_Click(object sender, EventArgs e)
+        
+
+        private void ButtonFilter_Click(object sender, EventArgs e)
         {
             if (textBoxHigherThan.BackColor == Color.Red
                 || textBoxLowerThan.BackColor == Color.Red
                 || textBoxStartsWith.BackColor == Color.Red)
             {
-                MessageBox.Show("Fill the filter fields with proper values.");
+                MessageBox.Show("Fill the gaps with proper values.");
                 return;
             }
             else
             {
+                bool filters = true;
                 if (checkBoxHigherThan.Checked && checkBoxLowerThan.Checked && checkBoxStartsWith.Checked)
                 {
                     int value1 = int.Parse(textBoxHigherThan.Text.Trim()); //checkbox n.1
@@ -226,6 +238,24 @@ namespace WinFormsApp1
                             && s.word.FirstOrDefault() == letter)
                         .ToList<Synonym>();
                 }
+                else if(checkBoxLowerThan.Checked && checkBoxHigherThan.Checked)
+                {
+                    int value1 = int.Parse(textBoxHigherThan.Text.Trim()); //checkbox n.1
+                    int value2 = int.Parse(textBoxLowerThan.Text.Trim()); //checkbox n.2
+                    if(value1 == value2)
+                    {
+                        listBox1.DataSource = Dict.Synonyms
+                            .Where(s => s.score == value1)
+                            .ToList<Synonym>();
+                    }
+                    else
+                    {
+                        listBox1.DataSource = Dict.Synonyms
+                            .Where(s => s.score > value1 
+                                && s.score < value2)
+                            .ToList<Synonym>();
+                    }
+                }
                 else if (checkBoxHigherThan.Checked)
                 {
                     int value = int.Parse(textBoxHigherThan.Text.Trim());
@@ -247,80 +277,109 @@ namespace WinFormsApp1
                         .Where(s => s.word.FirstOrDefault() == letter)
                         .ToList<Synonym>();
                 }
+                else
+                {
+                    listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
+                    filters = false;
+                }
+                if (filters)
+                {
+                    int count = listBox1.Items.Count;
+                    labelStats.Visible = true;
+                    labelStats.Text = $"Number of filtered synonyms: {count}";
+                }
+                else labelStats.Visible = false;
+                
             }
         }
 
-        private void checkBoxHigherThan_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxHigherThan_CheckedChanged(object sender, EventArgs e)
         {
-            textBoxHigherThan_TextChanged(sender, e);
+            TextBoxHigherThan_TextChanged(sender, e);
         }
-        private void checkBoxLowerThan_CheckedChanged(object sender, EventArgs e)
+        private void CheckBoxLowerThan_CheckedChanged(object sender, EventArgs e)
         {
-            textBoxLowerThan_TextChanged(sender, e);
-        }
-
-        private void checkBoxStartsWith_CheckedChanged(object sender, EventArgs e)
-        {
-            textBoxStartsWith_TextChanged(sender, e);
+            TextBoxLowerThan_TextChanged(sender, e);
         }
 
-        private void textBoxHigherThan_TextChanged(object sender, EventArgs e)
+        private void CheckBoxStartsWith_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBoxStartsWith_TextChanged(sender, e);
+        }
+
+        private void TextBoxHigherThan_TextChanged(object sender, EventArgs e)
         {
             if (checkBoxHigherThan.Checked)
             {
-                string score = textBoxHigherThan.Text.Trim();
+                string score1 = textBoxHigherThan.Text.Trim();
+                string score2 = textBoxLowerThan.Text.Trim();
 
-                if (!int.TryParse(score, out int score_int)
-                   || int.Parse(score) < 0
+                bool parsed = false;
+
+                if (!int.TryParse(score1, out int score1_int)
+                   || int.Parse(score1) < 0
                    ) textBoxHigherThan.BackColor = Color.Red;
-                else if (checkBoxLowerThan.Checked
-                    && int.Parse(score) > int.Parse(textBoxLowerThan.Text.Trim()))
+                else { textBoxHigherThan.BackColor = Color.Green; parsed = true; }
+
+                if(parsed && checkBoxLowerThan.Checked
+                    && int.TryParse(score2, out int score2_int))
                 {
-                    textBoxHigherThan.BackColor = Color.Red;
-                    textBoxLowerThan.BackColor = Color.Red;
+                    if(int.Parse(score1) > int.Parse(score2))
+                    {
+                        textBoxHigherThan.BackColor = Color.Red;
+                        textBoxLowerThan.BackColor = Color.Red;
+                    }
+                    else if(int.Parse(score1) <= int.Parse(score2))
+                    {
+                        textBoxHigherThan.BackColor = Color.Green;
+                        textBoxLowerThan.BackColor = Color.Green;
+                    }
+                    
                 }
-
-
-                else textBoxHigherThan.BackColor = Color.Green;
             }
             else textBoxHigherThan.BackColor = SystemColors.Window;
         }
 
-        private void textBoxLowerThan_TextChanged(object sender, EventArgs e)
+        private void TextBoxLowerThan_TextChanged(object sender, EventArgs e)
         {
             if (checkBoxLowerThan.Checked)
             {
                 string score = textBoxLowerThan.Text.Trim();
+                bool parsed = false;
 
                 if (!int.TryParse(score, out int score_int)
                     || int.Parse(score) < 0
                      ) textBoxLowerThan.BackColor = Color.Red;
 
-                else textBoxLowerThan.BackColor = Color.Green;
-                if (checkBoxHigherThan.Checked
-                    && int.Parse(score) < int.Parse(textBoxHigherThan.Text.Trim()))
+                else { textBoxLowerThan.BackColor = Color.Green; parsed = true; }
+                if (parsed && checkBoxHigherThan.Checked)
                 {
-                    textBoxHigherThan.BackColor = Color.Red;
-                    textBoxLowerThan.BackColor = Color.Red;
+                    if(int.Parse(score) < int.Parse(textBoxHigherThan.Text.Trim()))
+                    {
+                        textBoxHigherThan.BackColor = Color.Red;
+                        textBoxLowerThan.BackColor = Color.Red;
+                    }
+                    else if(int.Parse(score) >= int.Parse(textBoxHigherThan.Text.Trim()))
+                    {
+                        textBoxHigherThan.BackColor = Color.Green;
+                        textBoxLowerThan.BackColor = Color.Green;
+                    }
                 }
             }
-            else textBoxHigherThan.BackColor = SystemColors.Window;
+            else textBoxLowerThan.BackColor = SystemColors.Window;
         }
 
-        private void textBoxStartsWith_TextChanged(object sender, EventArgs e)
+        private void TextBoxStartsWith_TextChanged(object sender, EventArgs e)
         {
             if (checkBoxStartsWith.Checked)
             {
-                char input = textBoxStartsWith.Text.Trim().ToLower().First();
+                char input = textBoxStartsWith.Text.Trim().ToLower().FirstOrDefault();
                 textBoxStartsWith.BackColor = char.IsLetter(input) ? Color.Green : Color.Red;
             }
-            else textBoxHigherThan.BackColor = SystemColors.Window;
+            else textBoxStartsWith.BackColor = SystemColors.Window;
 
         }       
 
-        private void calculateStats(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
