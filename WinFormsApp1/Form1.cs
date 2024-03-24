@@ -191,6 +191,8 @@ namespace WinFormsApp1
             Dict.SaveChanges();
             MessageBox.Show("The database has been cleared successfully.");
             listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
+            buttonDelete.Enabled = false;
+            buttonClear.Enabled = false;
 
         }
 

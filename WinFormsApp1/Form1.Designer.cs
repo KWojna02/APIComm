@@ -377,7 +377,6 @@
             labelStats.Name = "labelStats";
             labelStats.Size = new Size(50, 20);
             labelStats.TabIndex = 7;
-            labelStats.Text = $"Number of filtered synonyms:";
             // 
             // Form1
             // 
