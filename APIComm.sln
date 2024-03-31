@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIComm", "APIComm\APIComm.csproj", "{09C4643A-D380-4930-8F84-993CB64FD20A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{E53074DB-69D6-48BC-AB9C-E9CE5FD47EEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsApp1", "WinFormsApp1\WinFormsApp1.csproj", "{E53074DB-69D6-48BC-AB9C-E9CE5FD47EEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{09C4643A-D380-4930-8F84-993CB64FD20A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09C4643A-D380-4930-8F84-993CB64FD20A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09C4643A-D380-4930-8F84-993CB64FD20A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09C4643A-D380-4930-8F84-993CB64FD20A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E53074DB-69D6-48BC-AB9C-E9CE5FD47EEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E53074DB-69D6-48BC-AB9C-E9CE5FD47EEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E53074DB-69D6-48BC-AB9C-E9CE5FD47EEF}.Release|Any CPU.ActiveCfg = Release|Any CPU

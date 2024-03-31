@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -50,7 +51,7 @@ namespace WinFormsApp1
                 foreach (Synonym Synonym in Synonyms)
                 {
                     Dict.Synonyms.Add(new() { word = Synonym.word.ToLower(), score = Synonym.score });
-                    Dict.SaveChanges();
+                    Dict.SaveChanges();                    
                     listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
                 }
                 
@@ -61,6 +62,7 @@ namespace WinFormsApp1
                 buttonDownload.Enabled = true;
                 return;
             }
+            ButtonFilter_Click(sender, e);
 
             buttonDownload.Enabled = true;
             buttonClear.Enabled = true;
@@ -180,8 +182,10 @@ namespace WinFormsApp1
             Dict.Synonyms.Remove(synonym);
             Dict.SaveChanges();
             MessageBox.Show($"Word {synonym.word} with score {synonym.score} has been deleted.");
-            listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
+            ButtonFilter_Click(sender, e);
+            ButtonSort_Click(sender, e);
             if (Dict.Synonyms.ToList<Synonym>().Count == 0) { buttonDelete.Enabled = false; buttonClear.Enabled = false; }
+
 
         }
 
@@ -189,8 +193,7 @@ namespace WinFormsApp1
         {
             Dict.Synonyms.RemoveRange(Dict.Synonyms);
             Dict.SaveChanges();
-            MessageBox.Show("The database has been cleared successfully.");
-            listBox1.DataSource = Dict.Synonyms.ToList<Synonym>();
+            ButtonFilter_Click(sender, e);
             buttonDelete.Enabled = false;
             buttonClear.Enabled = false;
 
@@ -240,7 +243,7 @@ namespace WinFormsApp1
                             && s.word.FirstOrDefault() == letter)
                         .ToList<Synonym>();
                 }
-                else if(checkBoxLowerThan.Checked && checkBoxHigherThan.Checked)
+                else if (checkBoxLowerThan.Checked && checkBoxHigherThan.Checked)
                 {
                     int value1 = int.Parse(textBoxHigherThan.Text.Trim()); //checkbox n.1
                     int value2 = int.Parse(textBoxLowerThan.Text.Trim()); //checkbox n.2

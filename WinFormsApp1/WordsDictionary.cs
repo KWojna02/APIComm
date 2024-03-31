@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,14 @@ namespace WinFormsApp1
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite(@" Data Source = WordsDict .db");
+            optionsBuilder.UseSqlite(@"Data Source = C:\Users\Abc\source\repos\APIComm\WinFormsApp1\WordsDict .db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Synonym>().HasData(
-                new Synonym() { Id = 1, word = "Szybki", score = 350 },
-                new Synonym() { Id = 2, word = "Przebiegly", score = 100});
+                new Synonym() { Id = 1, word = "Szybki", score = 350 });
         }
+        
     }
 }
